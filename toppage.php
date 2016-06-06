@@ -1,5 +1,4 @@
 <?php
-	session_start();
 	include("db.php");
 	if(isset($_POST['post_text'])){
 		if($stmt = $mysqli->prepare("INSERT INTO posts(id_user, text, date_of_publication) VALUES(?,?,?)")){
@@ -12,7 +11,10 @@
 		}
 	}
 ?>
-<form id="new_post" method="post" action="">
-	<p>Testo: <textarea cols="50" rows="10" name="post_text"></textarea></p>
-	<input type="submit"></input>
-</form>
+<div class="col-xs-9">
+				<form role="form" id="new_post" method="post" action="">
+					<div class="form-group">
+						<textarea class="form-control" cols="50" rows="5" style="resize:none;" name="post_text"></textarea><br>
+						<button type="submit" class="btn btn-default">Invia</button>
+					</div>
+				<br></br>
