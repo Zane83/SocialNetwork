@@ -1,7 +1,7 @@
 <?php 
 	session_start();
-	include("db.php");
- ?>
+	include("db.php"); 
+?>
 <!DOCTYPE html>
 <html lang="it">
 <head>

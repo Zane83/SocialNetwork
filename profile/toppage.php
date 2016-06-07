@@ -10,10 +10,16 @@
 		}
 	}
 ?>
-<div class="col-xs-9">
+		<div class="col-xs-9">
+<?php
+	if($id === $_SESSION['user_id']){
+?>
 				<form role="form" id="new_post" method="post" action="">
 					<div class="form-group">
 						<textarea class="form-control" cols="50" rows="5" style="resize:none;" name="post_text"></textarea><br>
 						<button type="submit" class="btn btn-default">Invia</button>
 					</div>
 				<br></br>
+<?php
+	}
+?>
