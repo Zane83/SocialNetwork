@@ -21,7 +21,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="./index.php"><img alt="Fakebook" src=""></a>
+				<a class="navbar-brand" href="./index.php"><img alt="Fakebook" src="./media/logo.png"></a>
 			</div>
 			<div class="collapse navbar-collapse navbar-right" id="mobilenavbar">
 				<ul class="nav navbar-nav navbar-right">
