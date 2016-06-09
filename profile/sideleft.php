@@ -14,7 +14,7 @@
 				<br></br>
 				<ul class="list-group">
 					<li class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><?php echo "     " . $obj->name . " " . $obj->surname?></li>
-					<li class="list-group-item"><span class="glyphicon glyphicon-time" aria-hidden="true"></span><?php echo "     Nato il " . $obj->date_of_birth; ?></li>
+					<li class="list-group-item"><span class="glyphicon glyphicon-time" aria-hidden="true"></span><?php echo "     Nato il " . date("d-m-Y",$obj->date_of_birth); ?></li>
 					<li class="list-group-item"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span><?php echo "     Nato a " . $obj->place_of_birth; ?></li>
 					<li class="list-group-item"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span><?php echo "     Biografia: \r\n" . $obj->biography; ?></li>
 				<?php

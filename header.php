@@ -27,14 +27,13 @@
 				<ul class="nav navbar-nav navbar-right">
 					<?php
 						if(empty($_SESSION['user_id'])){
-					?>
-						<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-						<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-					<?php
+							echo "<li><a href=\"./reg.php\"><span class=\"glyphicon glyphicon-user\"></span> Registrati</a></li>";
+							echo "<li><a href=\"./login.php\"><span class=\"glyphicon glyphicon-log-in\"></span> Login</a></li>";
 						} else {
 							$id = $_SESSION['user_id'];
 							$res = $mysqli->query("SELECT avatar FROM users WHERE id = $id");
 							echo "<li><a href=\"./profile.php\"><img src=\"" . $res->fetch_object()->avatar . "\" class=\"img-circle\" alt=\"Antonio\" width=\"25\" height=\"25\"></a></li>";
+							echo "<li><a href=\"./logout.php\"><span class=\"glyphicon glyphicon-log-out\"></span> Logout</a></li>";
 						}
 					?>
 					

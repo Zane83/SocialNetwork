@@ -39,17 +39,20 @@
 	</nav>
 	<div class="container">
 <?php
-	if(isset($_POST['email'])){
-		$email = $_POST['email'];
-		$password = md5($_POST['password']);
-		$res = $mysqli->query("SELECT * FROM users WHERE email = '$email' AND password = '$password'");
-			if($obj = $res->fetch_object()){
-				$_SESSION['user_id'] = $obj->id;
-				echo "<div class=\"alert alert-success\"><strong>Perfetto!</strong> Login Effettuato!</div>";
-			} else {
-				echo "<div class=\"alert alert-danger\"><strong>Errore!</strong> Controlla i dati inseriti!</div>";
-			}
-	}
+	if(isset($_SESSION['user_id'])){
+		echo "<div class=\"alert alert-danger\"><strong>Errore!</strong> Hai già effettuato il login!</div>";
+	} else {
+		if(isset($_POST['email'])){
+			$email = $_POST['email'];
+			$password = md5($_POST['password']);
+			$res = $mysqli->query("SELECT * FROM users WHERE email = '$email' AND password = '$password'");
+				if($obj = $res->fetch_object()){
+					$_SESSION['user_id'] = $obj->id;
+					echo "<div class=\"alert alert-success\"><strong>Perfetto!</strong> Login Effettuato!</div>";
+				} else {
+					echo "<div class=\"alert alert-danger\"><strong>Errore!</strong> Controlla i dati inseriti!</div>";
+				}
+		}
 ?>
 	<form role="form" action="" method="post">
 		<div class="form-group">
@@ -63,3 +66,9 @@
 		<button type="submit" class="btn btn-default">Invia </button>
 		</div>
 	</form>
+<?php
+	}
+?>
+	</div>
+</body>
+</html>

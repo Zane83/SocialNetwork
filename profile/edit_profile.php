@@ -17,7 +17,7 @@
 								} else {
 									$_POST['avatar'] = $obj['avatar'];
 								}
-				$stmt->bind_param('ssssiss', $_POST['name'], $_POST['surname'], $_POST['password'], $_POST['place_of_birth'], $_POST['date_of_birth'], $_POST['avatar'], $_POST['biography']);
+				$stmt->bind_param('ssssiss', $_POST['name'], $_POST['surname'], $_POST['password'], $_POST['place_of_birth'], strtotime($_POST['date_of_birth']), $_POST['avatar'], $_POST['biography']);
 				foreach($_POST as $key => &$value){
 					if(empty($value))
 						$value = $obj[$key];

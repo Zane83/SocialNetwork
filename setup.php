@@ -8,7 +8,7 @@
 		password varchar(64) NOT NULL,
 		name varchar(64) NOT NULL,
 		surname varchar(64) NOT NULL,
-		date_of_birth date NOT NULL,
+		date_of_birth int NOT NULL,
 		place_of_birth varchar(32) NOT NULL,
 		avatar varchar(128) NOT NULL,
 		biography varchar(512) NOT NULL
