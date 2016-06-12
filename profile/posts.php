@@ -1,7 +1,7 @@
 <?php
 	if(isset($_POST['post_text'])){
 		if($stmt = $mysqli->prepare("INSERT INTO posts(id_user, text, date_of_publication) VALUES(?,?,?)")){
-			$stmt->bind_param('iss', $_SESSION['user_id'], $_POST['post_text'], date("Y-m-d"));
+			$stmt->bind_param('isi', $_SESSION['user_id'], $_POST['post_text'], date("Y-m-d"));
 			if(empty($_POST['post_text']))
 				$_POST['post_text'] = null;
 			
@@ -27,8 +27,9 @@
 	<hr>
 	</form>
 <?php
-		$res = $mysqli->query("SELECT * FROM posts, users WHERE posts.id_user = $id AND users.id = $id ORDER BY posts.date_of_publication DESC");
+		$res = $mysqli->query("SELECT posts.text, posts.date_of_publication, posts.id, users.avatar, users.name, users.surname FROM posts, users WHERE posts.id_user = $id AND users.id = $id ORDER BY posts.date_of_publication DESC");
 			while($obj = $res->fetch_object()){
+				$postid = $obj->id;
 ?>
 				<div class="panel panel-default">
 					<div class="panel-body">
@@ -38,6 +39,9 @@
 						</div>
 						<h5><span class="glyphicon glyphicon-time"></span> Postato il giorno <?php echo $obj->date_of_publication; ?></h5>
 						<p><?php echo $obj->text; ?></p>
+						<button type="button" class="btn btn-default" onclick="likecomment(<?php echo $_SESSION['user_id'] . "," . $postid . ",'like'"; ?>)"><span class="glyphicon glyphicon-thumbs-up" id="like_button"></span></button>
+						<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-comment"></span></button>
+						<small><a href=#><?php echo "   " . $mysqli->query("SELECT * FROM likes WHERE id_post = '$postid'")->num_rows . " like e " . $mysqli->query("SELECT * FROM comments WHERE id_post = '$postid'")->num_rows . " commenti"; ?></a></small>
 					</div>
 				</div>
 <?php

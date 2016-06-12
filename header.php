@@ -1,6 +1,9 @@
 <?php 
 	session_start();
 	include("db.php");
+	if(empty($_SESSION['user_id'])){
+		header("Location: login.php");
+	}
  ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -11,6 +14,23 @@
   <link rel="stylesheet" href="./css/bootstrap.min.css">
   <script src="./libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="./js/bootstrap.min.js"></script>
+  <script>
+	function likecomment(userid, postid, type) {
+        var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                if(xmlhttp.responseText == "liked"){
+					document.getElementById("like_button").style.color = "#11abd7";
+				}
+				else{
+					document.getElementById("like_button").style.color = "#000";
+				}
+            }
+        };
+        xmlhttp.open("GET", "likecomment.php?user_id=" + userid + "&post_id=" + postid + "&type=" + type, true);
+        xmlhttp.send();
+    }
+  </script>
 </head>
 <body>
 	<nav class="navbar navbar-default">

@@ -22,9 +22,10 @@
 	</form>
 <?php
 		$id = $_SESSION['user_id'];
-		$res = $mysqli->query("SELECT * FROM posts INNER JOIN friendships ON ((posts.id_user = friendships.id_sender OR posts.id_user = friendships.id_receiver) AND posts.id_user != $id) AND (friendships.id_sender = $id OR friendships.id_receiver = $id) ORDER BY posts.date_of_publication DESC, (SELECT level FROM user_interests WHERE id_1 = $id AND id_2 = posts.id_user) DESC ");
+		$res = $mysqli->query("SELECT posts.id, posts.date_of_publication, posts.text, posts.id_user FROM posts INNER JOIN friendships ON ((posts.id_user = friendships.id_sender OR posts.id_user = friendships.id_receiver) AND posts.id_user != $id) AND (friendships.id_sender = $id OR friendships.id_receiver = $id) ORDER BY posts.date_of_publication DESC, (SELECT level FROM user_interests WHERE id_1 = $id AND id_2 = posts.id_user) DESC ");
 			while($obj = $res->fetch_object()){
 				$userid = $obj->id_user;
+				$postid = $obj->id;
 				$obj2 = $mysqli->query("SELECT * FROM users WHERE id = '$userid'")->fetch_object();
 ?>
 				<div class="panel panel-default">
@@ -35,6 +36,9 @@
 						</div>
 						<h5><span class="glyphicon glyphicon-time"></span> Postato il giorno <?php echo $obj->date_of_publication; ?></h5>
 						<p><?php echo $obj->text; ?></p>
+						<button type="button" class="btn btn-default" onclick="likecomment(<?php echo $id . "," . $postid . ",'like'"; ?>)"><span class="glyphicon glyphicon-thumbs-up" id="like_button"></span></button>
+						<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-comment"></span></button>
+						<small><a href="?dir=single&post_id=<?php echo $postid; ?>"><?php echo "   " . $mysqli->query("SELECT * FROM likes WHERE id_post = '$postid'")->num_rows . " like e " . $mysqli->query("SELECT * FROM comments WHERE id_post = '$postid'")->num_rows . " commenti"; ?></a></small>
 					</div>
 				</div>
 <?php

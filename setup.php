@@ -50,7 +50,7 @@
 		id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 		id_user int NOT NULL,
 		id_post int NOT NULL,
-		date date NOT NULL,
+		date int NOT NULL,
 		
 		foreign key(id_user) references users(id),
 		foreign key(id_post) references posts(id)
@@ -64,8 +64,9 @@
 	CREATE TABLE comments(
 		id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 		id_user int NOT NULL,
+		text varchar(256) NOT NULL,
 		id_post int NOT NULL,
-		date date NOT NULL,
+		date int NOT NULL,
 		
 		foreign key(id_user) references users(id),
 		foreign key(id_post) references posts(id)
@@ -82,7 +83,7 @@
 		type varchar(16) NOT NULL,
 		id_type int NOT NULL,
 		viewed boolean NOT NULL,
-		date date NOT NULL,
+		date int NOT NULL,
 		
 		foreign key(id_user) references users(id)
 	);

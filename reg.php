@@ -51,10 +51,10 @@
 											move_uploaded_file($_FILES['avatar']['tmp_name'], $dir);
 											$_POST['avatar'] = $dir;
 										} else {
-											$_POST['avatar'] = $obj['avatar'];
+											$_POST['avatar'] = "./media/images/profile_images/default.jpg";
 										}
 									} else {
-										$_POST['avatar'] = $obj['avatar'];
+										$_POST['avatar'] = "./media/images/profile_images/default.jpg";
 									}
 					$stmt->bind_param('sssssiss', $_POST['name'], $_POST['surname'], $_POST['email'], md5($_POST['password']), $_POST['place_of_birth'], strtotime($_POST['date_of_birth']), $_POST['avatar'], $_POST['biography']);
 					foreach($_POST as &$value){
