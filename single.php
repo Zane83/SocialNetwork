@@ -10,8 +10,13 @@
 						if(empty($_POST['comment_text']))
 							$_POST['comment_text'] = null;
 						
-						if(!$stmt->execute())
-							echo "Errore!Non hai inserito il testo!";
+						if(!$stmt->execute()){
+							echo "<div class=\"alert alert-danger\"><strong>Errore!</strong> Non hai inserito il testo!</div>";
+						} else {
+							$id_2 = $mysqli->query("SELECT id_user FROM posts WHERE id = '$post_id'")->fetch_object()->id_user;
+							$mysqli->query("UPDATE user_interests SET level = level + 1 WHERE id_1 = '$id' AND id_2 = '$id_2'");
+						}
+							
 					}
 				}
 				

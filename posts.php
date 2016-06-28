@@ -6,7 +6,7 @@
 				$_POST['post_text'] = null;
 			
 			if(!$stmt->execute())
-				echo "Errore!Non hai inserito il testo!";
+				echo "<div class=\"alert alert-danger\"><strong>Errore!</strong> Non hai inserito il testo!</div>";
 		}
 	}
 ?>

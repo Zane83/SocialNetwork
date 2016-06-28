@@ -61,9 +61,10 @@
 				</ul>
 			</div>
 			
-			<form class="navbar-form" role="search">
+			<form class="navbar-form" role="search" method="get" action="">
 				<div class="input-group" style="display:table;">
-					<input type="text" class="form-control" placeholder="Cerca...">
+					<input type="hidden" name="dir" value="search" />
+					<input type="text" class="form-control" placeholder="Cerca..." name="search">
 					<span class="input-group-addon" style="width:1%;"><span class="glyphicon glyphicon-search"></span></span>
 				</div>
 			</form>

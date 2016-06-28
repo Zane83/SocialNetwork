@@ -22,7 +22,8 @@
 		id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 		id_sender int NOT NULL,
 		id_receiver int NOT NULL,
-		date_of_request date NOT NULL,
+		date_of_request int NOT NULL,
+		state boolean NOT NULL,
 		
 		foreign key(id_sender) references users(id),
 		foreign key(id_receiver) references users(id)
