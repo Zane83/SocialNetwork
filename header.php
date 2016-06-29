@@ -52,7 +52,9 @@
 						} else {
 							$id = $_SESSION['user_id'];
 							$res = $mysqli->query("SELECT avatar FROM users WHERE id = $id");
-							echo "<li><a href=\"./profile.php\"><img src=\"" . $res->fetch_object()->avatar . "\" class=\"img-circle\" alt=\"Antonio\" width=\"25\" height=\"25\"></a></li>";
+							$count_n = $mysqli->query("SELECT COUNT(*) AS count_n FROM notifies WHERE id_receiver = '$id' AND viewed = '0'")->fetch_object()->count_n;
+							echo "<li><a href=\"./profile.php\"><img src=\"" . $res->fetch_object()->avatar . "\" class=\"img-circle\" alt=\"Antonio\" width=\"25\" height=\"25\"></a></li>";	
+							echo "<li><a href=\"?dir=notifies\"><span class=\"badge\">" . $count_n . "</span></a></li>";
 							echo "<li><a href=\"./logout.php\"><span class=\"glyphicon glyphicon-log-out\"></span> Logout</a></li>";
 						}
 					?>

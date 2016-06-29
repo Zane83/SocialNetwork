@@ -13,8 +13,11 @@
 						if(!$stmt->execute()){
 							echo "<div class=\"alert alert-danger\"><strong>Errore!</strong> Non hai inserito il testo!</div>";
 						} else {
+							$time = time();
 							$id_2 = $mysqli->query("SELECT id_user FROM posts WHERE id = '$post_id'")->fetch_object()->id_user;
 							$mysqli->query("UPDATE user_interests SET level = level + 1 WHERE id_1 = '$id' AND id_2 = '$id_2'");
+							$id_type = $mysqli->query("SELECT MAX(id) AS id FROM comments")->fetch_object()->id;
+							$mysqli->query("INSERT INTO notifies (id_user, id_receiver, id_post, type, id_type, viewed, date) VALUES('$id','$id_2','$post_id','commento','$id_type','0','$time')");
 						}
 							
 					}
