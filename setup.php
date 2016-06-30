@@ -81,6 +81,8 @@
 	CREATE TABLE notifies(
 		id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 		id_user int NOT NULL,
+		id_receiver int NOT NULL,
+		id_post int NOT NULL,
 		type varchar(16) NOT NULL,
 		id_type int NOT NULL,
 		viewed boolean NOT NULL,

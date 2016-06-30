@@ -22,8 +22,11 @@
 					if(empty($value))
 						$value = $obj[$key];
 				}
-				if(!$stmt->execute())
+				if(!$stmt->execute()){
 					echo "<div class=\"alert alert-danger\"><strong>Errore!</strong> Qualcosa è andato storto nella modifica delle informazioni.</div>";
+				} else {
+					echo "<div class=\"alert alert-success\"><strong>Perfetto!</strong> Informazioni modificate!</div>";
+				}
 			}
 		}
 	}

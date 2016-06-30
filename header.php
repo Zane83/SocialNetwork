@@ -52,7 +52,7 @@
 						} else {
 							$id = $_SESSION['user_id'];
 							$res = $mysqli->query("SELECT avatar FROM users WHERE id = $id");
-							$count_n = $mysqli->query("SELECT COUNT(*) AS count_n FROM notifies WHERE id_receiver = '$id' AND viewed = '0'")->fetch_object()->count_n;
+							$count_n = $mysqli->query("SELECT COUNT(*) AS count_n FROM notifies WHERE id_receiver = '$id' AND viewed = '0'")->fetch_object()->count_n + $mysqli->query("SELECT COUNT(*) AS count_r FROM friendships WHERE id_receiver = '$id' AND state = '0'")->fetch_object()->count_r;
 							echo "<li><a href=\"./profile.php\"><img src=\"" . $res->fetch_object()->avatar . "\" class=\"img-circle\" alt=\"Antonio\" width=\"25\" height=\"25\"></a></li>";	
 							echo "<li><a href=\"?dir=notifies\"><span class=\"badge\">" . $count_n . "</span></a></li>";
 							echo "<li><a href=\"./logout.php\"><span class=\"glyphicon glyphicon-log-out\"></span> Logout</a></li>";
@@ -63,7 +63,7 @@
 				</ul>
 			</div>
 			
-			<form class="navbar-form" role="search" method="get" action="">
+			<form class="navbar-form" role="search" method="get" action="index.php">
 				<div class="input-group" style="display:table;">
 					<input type="hidden" name="dir" value="search" />
 					<input type="text" class="form-control" placeholder="Cerca..." name="search">

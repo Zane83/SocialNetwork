@@ -24,7 +24,7 @@
 					<img src="<?php echo $obj->avatar; ?>" class="img-circle" height="45" width="45" alt="avatar">
 				</div>
 				<div class="col-xs-10">
-					<h4><?php echo $obj->name . " " . $obj->surname; ?></h4>
+					<a href="profile.php?uid=<?php echo $obj->id; ?>"><h4><?php echo $obj->name . " " . $obj->surname; ?></h4></a>
 					<br>
 				</div>
 				<div class="col-xs-1">
