@@ -15,9 +15,11 @@
 						} else {
 							$time = time();
 							$id_2 = $mysqli->query("SELECT id_user FROM posts WHERE id = '$post_id'")->fetch_object()->id_user;
-							$mysqli->query("UPDATE user_interests SET level = level + 1 WHERE id_1 = '$id' AND id_2 = '$id_2'");
-							$id_type = $mysqli->query("SELECT MAX(id) AS id FROM comments")->fetch_object()->id;
-							$mysqli->query("INSERT INTO notifies (id_user, id_receiver, id_post, type, id_type, viewed, date) VALUES('$id','$id_2','$post_id','commento','$id_type','0','$time')");
+							if($id != $id_2){
+								$mysqli->query("UPDATE user_interests SET level = level + 1 WHERE id_1 = '$id' AND id_2 = '$id_2'");
+								$id_type = $mysqli->query("SELECT MAX(id) AS id FROM comments")->fetch_object()->id;
+								$mysqli->query("INSERT INTO notifies (id_user, id_receiver, id_post, type, id_type, viewed, date) VALUES('$id','$id_2','$post_id','commento','$id_type','0','$time')");
+							}
 						}
 							
 					}
@@ -53,7 +55,7 @@
 			<br>
 			<p><span class="badge"></span> Commenti:</p><br>
 			<?php
-				$res = $mysqli->query("SELECT users.name, users.surname, users.avatar, comments.text, comments.date FROM comments, users WHERE comments.id_post = '$post_id' AND users.id = comments.id_user ORDER BY comments.date DESC");
+				$res = $mysqli->query("SELECT users.name, users.surname, users.avatar, comments.text, comments.date FROM comments, users WHERE comments.id_post = '$post_id' AND users.id = comments.id_user ORDER BY comments.date ASC");
 				while($obj2 = $res->fetch_object()){
 			?>
 			<div class="row">

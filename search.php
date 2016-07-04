@@ -5,6 +5,7 @@
 		$receiver = $_GET['id'];
 		if($_GET['mode'] == "send"){
 			$mysqli->query("INSERT INTO friendships(id_sender, id_receiver, date_of_request, state) VALUES('$id', '$receiver', '$time', '0')");
+			$mysqli->query("INSERT INTO user_interests(id_1, id_2, level) VALUES('$id', '$receiver', '0')");
 		} else {
 			$mysqli->query("DELETE FROM friendships WHERE (id_sender = '$id' OR id_sender = '$receiver') AND (id_receiver = '$id' OR id_receiver = '$receiver')");
 		}

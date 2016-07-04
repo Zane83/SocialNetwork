@@ -49,6 +49,7 @@
 				if($obj = $res->fetch_object()){
 					$_SESSION['user_id'] = $obj->id;
 					echo "<div class=\"alert alert-success\"><strong>Perfetto!</strong> Login Effettuato!</div>";
+					header("Location: ./index.php");
 				} else {
 					echo "<div class=\"alert alert-danger\"><strong>Errore!</strong> Controlla i dati inseriti!</div>";
 				}
